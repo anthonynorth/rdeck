@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
       </span>
     </div>
 
@@ -156,8 +156,9 @@
   get_color <span class='op'>=</span> <span class='st'>"#000000ff"</span>,
   get_width <span class='op'>=</span> <span class='fl'>1</span>,
   trail_length <span class='op'>=</span> <span class='fl'>120</span>,
-  current_time <span class='op'>=</span> <span class='fl'>0</span>,
-  get_timestamps <span class='op'>=</span> <span class='cn'>NULL</span>,
+  get_timestamps <span class='op'>=</span> <span class='va'>timestamps</span>,
+  loop_length <span class='op'>=</span> <span class='fl'>1800</span>,
+  animation_speed <span class='op'>=</span> <span class='fl'>30</span>,
   blending_mode <span class='op'>=</span> <span class='st'>"normal"</span>,
   tooltip <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
@@ -280,15 +281,23 @@ Accepts a single numeric value, a numeric scale, or a
     </tr>
     <tr>
       <th>trail_length</th>
-      <td><p>number</p></td>
-    </tr>
-    <tr>
-      <th>current_time</th>
-      <td><p>number</p></td>
+      <td><p>&lt;<code>number</code>&gt; The number of seconds for a path to completely fade out.</p></td>
     </tr>
     <tr>
       <th>get_timestamps</th>
-      <td><p>&lt;<code><a href='accessor.html'>accessor</a></code>&gt;</p></td>
+      <td><p>&lt;<code><a href='accessor.html'>accessor</a></code>&gt; The timestamps for each <em>trip</em>. For each trip,
+each timestamp corresponds to a position in the linestring returned by <code>get_path</code>,
+representing the time at which that position was visited.</p>
+<p>Accepts a <a href='https://dplyr.tidyverse.org/articles/programming.html'>tidy-eval</a>
+list column of numbers.</p></td>
+    </tr>
+    <tr>
+      <th>loop_length</th>
+      <td><p>&lt;<code>number</code>&gt; The number of seconds to complete an animation loop.</p></td>
+    </tr>
+    <tr>
+      <th>animation_speed</th>
+      <td><p>&lt;<code>number</code>&gt; The animation speed multiplier.</p></td>
     </tr>
     <tr>
       <th>blending_mode</th>
