@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SFC Point — sfc_point • rdeck</title>
+<title>Mapbox access token — mapbox_access_token • rdeck</title>
 
 
 <!-- jquery -->
@@ -45,8 +45,12 @@
 
 
 
-<meta property="og:title" content="SFC Point — sfc_point" />
-<meta property="og:description" content="Create an sfc_point column from coordinate vectors" />
+<meta property="og:title" content="Mapbox access token — mapbox_access_token" />
+<meta property="og:description" content="A mapbox access token is required for rendering the mapbox basemap (regardless of tiles used)
+and mapbox services (tiles). To use a basemap, you need to register for a
+mapbox account. Mapbox has a generous free tier.
+Each rdeck map rendered equates to a
+map load for web." />
 
 
 
@@ -123,38 +127,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>SFC Point</h1>
-    <small class="dont-index">Source: <a href='https://github.com/anthonynorth/rdeck/blob/master/R/geometry.R'><code>R/geometry.R</code></a></small>
-    <div class="hidden name"><code>sfc_point.Rd</code></div>
+    <h1>Mapbox access token</h1>
+    <small class="dont-index">Source: <a href='https://github.com/anthonynorth/rdeck/blob/master/R/options.R'><code>R/options.R</code></a></small>
+    <div class="hidden name"><code>mapbox_access_token.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create an sfc_point column from coordinate vectors</p>
+    <p>A mapbox access token is required for rendering the mapbox basemap (regardless of tiles used)
+and mapbox services (tiles). To use a basemap, you need to register for a
+<a href='https://account.mapbox.com/auth/signup'>mapbox account</a>. Mapbox has a generous free tier.</p>
+<p>Each rdeck map <em>rendered</em> equates to a
+<a href='https://www.mapbox.com/pricing/#maploads'>map load for web</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sfc_point</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, z <span class='op'>=</span> <span class='cn'>NULL</span>, crs <span class='op'>=</span> <span class='fl'>4326</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mapbox_access_token</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>x coordinate</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>y coordinate</p></td>
-    </tr>
-    <tr>
-      <th>z</th>
-      <td><p>z coordinate optional</p></td>
-    </tr>
-    <tr>
-      <th>crs</th>
-      <td><p>coordinate reference system</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The mapbox token is read from the following locations (in order):</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>getOption("rdeck.mapbox_access_token")</a></code></p></li>
+<li><p><code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("MAPBOX_ACCESS_TOKEN")</a></code></p></li>
+<li><p>`Sys.getenv("MAPBOX_TOKEN")</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='https://docs.mapbox.com/help/glossary/access-token'>https://docs.mapbox.com/help/glossary/access-token</a></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

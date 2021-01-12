@@ -46,7 +46,8 @@
 
 
 <meta property="og:title" content="RDeck — rdeck" />
-<meta property="og:description" content="Create a Deck.GL map." />
+<meta property="og:description" content="Create a Deck.GL map. Rendering the mapbox basemap requires a mapbox account and
+mapbox access token." />
 
 
 
@@ -78,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9100</span>
       </span>
     </div>
 
@@ -129,11 +130,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Create a Deck.GL map.</p>
+    <p>Create a Deck.GL map. Rendering the mapbox basemap requires a mapbox account and
+<a href='[mapbox_access_token]'>mapbox access token</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rdeck</span><span class='op'>(</span>
-  mapbox_api_access_token <span class='op'>=</span> <span class='cn'>NULL</span>,
   map_style <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/stylebox/man/mapbox_styles.html'>mapbox_dark</a></span><span class='op'>(</span><span class='op'>)</span>,
   theme <span class='op'>=</span> <span class='st'>"kepler"</span>,
   initial_bounds <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -152,43 +153,45 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mapbox_api_access_token</th>
-      <td><p><code>character</code>
-The api access token to use mapbox tiles.</p></td>
-    </tr>
-    <tr>
       <th>map_style</th>
-      <td><p><code>character</code>
-A mapbox style url. <a href='https://docs.mapbox.com/api/maps/#mapbox-styles'>https://docs.mapbox.com/api/maps/#mapbox-styles</a></p></td>
+      <td><p>&lt;<code>string</code>&gt; The mapbox basemap style url.
+See <a href='https://docs.mapbox.com/api/maps/#mapbox-styles'>https://docs.mapbox.com/api/maps/#mapbox-styles</a></p></td>
     </tr>
     <tr>
       <th>theme</th>
-      <td><p>The widget theme. Either "kepler" or "light".</p></td>
+      <td><p>&lt;<code>"kepler"</code> | <code>"light"</code>&gt; The widget theme which alters the style of the
+legend and tooltips.</p></td>
     </tr>
     <tr>
       <th>initial_bounds</th>
-      <td><p><code><a href='https://r-spatial.github.io/sf/reference/st_bbox.html'>sf::st_bbox</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf::sf</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sfc.html'>sf::sfc</a></code> | <code>sf::sfg</code>
+      <td><p>&lt;<code><a href='https://r-spatial.github.io/sf/reference/st_bbox.html'>st_bbox</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sfc.html'>sfc</a></code>&gt;
 The initial bounds of the map; overwrites <code>initial_view_state</code>.</p></td>
     </tr>
     <tr>
       <th>initial_view_state</th>
-      <td><p><code>view_state</code>
-The initial view state of the map. See <code><a href='view_state.html'>view_state()</a></code> for details.</p></td>
+      <td><p>&lt;<code><a href='view_state.html'>view_state</a></code>&gt; Defines the map position, zoom, bearing and pitch.</p></td>
     </tr>
     <tr>
       <th>controller</th>
-      <td><p><code>logical</code>
-If <code>NULL</code> or <code>FALSE</code>, the map is not interactive.</p></td>
+      <td><p>&lt;<code>logical</code>&gt; If <code>NULL</code> or <code>FALSE</code>, the map is not interactive.</p></td>
     </tr>
     <tr>
       <th>picking_radius</th>
-      <td><p><code>numeric</code>
-Extra pixels around the pointer to include while picking.</p></td>
+      <td><p>&lt;<code>number</code>&gt; Extra pixels around the pointer to include while picking;
+useful when rendering objects that are difficult to hover, e.g. thin lines, small points, etc.</p></td>
     </tr>
     <tr>
       <th>use_device_pixels</th>
-      <td><p><code>logical</code> | <code>numeric</code>
-Controls the resolution of drawing buffer used for rendering.</p></td>
+      <td><p>&lt;<code>logical</code> | <code>number</code>&gt; Controls the resolution of drawing buffer used
+for rendering.</p><ul>
+<li><p><code>TRUE</code>: Resolution is defined by <code>window.devicePixelRatio</code>. On Retina/HD displays, this
+resolution is usually twice as big as <code>CSS pixels</code> resolution.</p></li>
+<li><p><code>FALSE</code>: <code>CSS pixels</code> resolution is used for rendering.</p></li>
+<li><p><code>number</code>: Custom ratio (drawing buffer resolution to <code>CSS pixel</code>) to determine drawing
+buffer size. A value less than <code>1</code> uses resolution smaller than <code>CSS pixels</code>, improving
+rendering performance at the expense of image quality; a value greater than <code>1</code> improves
+image quality at the expense of rendering performance.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>blending_mode</th>
@@ -203,22 +206,21 @@ dot density on light maps.</p></li>
     </tr>
     <tr>
       <th>width</th>
-      <td><p><code>numeric</code>
-Width of the map</p></td>
+      <td><p>&lt;<code>number</code>&gt; The width of the map canvas.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p><code>numeric</code>
-Height of the map</p></td>
+      <td><p>&lt;<code>number</code>&gt; The height of the map canvas.</p></td>
     </tr>
     <tr>
       <th>elementId</th>
-      <td><p><code>character</code>
-Element id for the map.</p></td>
+      <td><p>&lt;<code>string</code>&gt; The map element id. Not used in shiny applications.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional parameters to pass to the <code>Deck</code>.</p></td>
+      <td><p>Additional parameters that will be forwarded to deck.gl javascript without
+validation nor processing. All dots must be named and will be <code>camelCased</code> when serialised.
+A warning is raised when dots are used, warning class <code>rdeck_dots_nonempty</code>.</p></td>
     </tr>
     </table>
 

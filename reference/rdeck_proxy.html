@@ -47,7 +47,14 @@
 
 <meta property="og:title" content="RDeck proxy — rdeck_proxy" />
 <meta property="og:description" content="Creates an rdeck() interface for asynchronous updates of a pre-rendered rdeck map
-in Shiny apps." />
+in Shiny apps.
+All rdeck props can be updated through the proxy (NULL values will be discarded),
+layers that are added to the proxy (e.g. rdeck_proxy %&amp;gt;% add_h3_hexagon_layer())
+will be merged with pre-rendered rdeck layers.
+Layers are merged by their id. Matched layers will be updated in place, new layers
+will be appended and hence drawn on top of all existing layers. For layer updates, you
+may omit the data prop to avoid re-serialising unchanged data. All other props will
+assume their defaults if omitted." />
 
 
 
@@ -79,7 +86,7 @@ in Shiny apps." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9100</span>
       </span>
     </div>
 
@@ -132,6 +139,13 @@ in Shiny apps." />
     <div class="ref-description">
     <p>Creates an <code><a href='rdeck.html'>rdeck()</a></code> interface for asynchronous updates of a pre-rendered rdeck map
 in Shiny apps.</p>
+<p>All rdeck props can be updated through the proxy (<code>NULL</code> values will be discarded),
+layers that are added to the proxy (e.g. <code>rdeck_proxy %&gt;% add_h3_hexagon_layer()</code>)
+will be merged with pre-rendered rdeck layers.</p>
+<p>Layers are merged by their <code>id</code>. Matched layers will be updated in place, new layers
+will be appended and hence drawn <em>on top</em> of all existing layers. For layer updates, you
+may omit the <code>data</code> prop to avoid re-serialising unchanged data. All other props will
+assume their defaults if omitted.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rdeck_proxy</span><span class='op'>(</span>
@@ -153,45 +167,52 @@ in Shiny apps.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>id</th>
-      <td><p>the map id</p></td>
+      <td><p>&lt;<code>string</code>&gt; The map id</p></td>
     </tr>
     <tr>
       <th>session</th>
-      <td><p>the shiny session</p></td>
+      <td><p>&lt;<code>ShinySession</code>&gt; The shiny session</p></td>
     </tr>
     <tr>
       <th>map_style</th>
-      <td><p><code>character</code>
-A mapbox style url. <a href='https://docs.mapbox.com/api/maps/#mapbox-styles'>https://docs.mapbox.com/api/maps/#mapbox-styles</a></p></td>
+      <td><p>&lt;<code>string</code>&gt; The mapbox basemap style url.
+See <a href='https://docs.mapbox.com/api/maps/#mapbox-styles'>https://docs.mapbox.com/api/maps/#mapbox-styles</a></p></td>
     </tr>
     <tr>
       <th>theme</th>
-      <td><p>The widget theme. Either "kepler" or "light".</p></td>
+      <td><p>&lt;<code>"kepler"</code> | <code>"light"</code>&gt; The widget theme which alters the style of the
+legend and tooltips.</p></td>
     </tr>
     <tr>
       <th>initial_bounds</th>
-      <td><p><code><a href='https://r-spatial.github.io/sf/reference/st_bbox.html'>sf::st_bbox</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf::sf</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sfc.html'>sf::sfc</a></code> | <code>sf::sfg</code>
+      <td><p>&lt;<code><a href='https://r-spatial.github.io/sf/reference/st_bbox.html'>st_bbox</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf</a></code> | <code><a href='https://r-spatial.github.io/sf/reference/sfc.html'>sfc</a></code>&gt;
 The initial bounds of the map; overwrites <code>initial_view_state</code>.</p></td>
     </tr>
     <tr>
       <th>initial_view_state</th>
-      <td><p><code>view_state</code>
-The initial view state of the map. See <code><a href='view_state.html'>view_state()</a></code> for details.</p></td>
+      <td><p>&lt;<code><a href='view_state.html'>view_state</a></code>&gt; Defines the map position, zoom, bearing and pitch.</p></td>
     </tr>
     <tr>
       <th>controller</th>
-      <td><p><code>logical</code>
-If <code>NULL</code> or <code>FALSE</code>, the map is not interactive.</p></td>
+      <td><p>&lt;<code>logical</code>&gt; If <code>NULL</code> or <code>FALSE</code>, the map is not interactive.</p></td>
     </tr>
     <tr>
       <th>picking_radius</th>
-      <td><p><code>numeric</code>
-Extra pixels around the pointer to include while picking.</p></td>
+      <td><p>&lt;<code>number</code>&gt; Extra pixels around the pointer to include while picking;
+useful when rendering objects that are difficult to hover, e.g. thin lines, small points, etc.</p></td>
     </tr>
     <tr>
       <th>use_device_pixels</th>
-      <td><p><code>logical</code> | <code>numeric</code>
-Controls the resolution of drawing buffer used for rendering.</p></td>
+      <td><p>&lt;<code>logical</code> | <code>number</code>&gt; Controls the resolution of drawing buffer used
+for rendering.</p><ul>
+<li><p><code>TRUE</code>: Resolution is defined by <code>window.devicePixelRatio</code>. On Retina/HD displays, this
+resolution is usually twice as big as <code>CSS pixels</code> resolution.</p></li>
+<li><p><code>FALSE</code>: <code>CSS pixels</code> resolution is used for rendering.</p></li>
+<li><p><code>number</code>: Custom ratio (drawing buffer resolution to <code>CSS pixel</code>) to determine drawing
+buffer size. A value less than <code>1</code> uses resolution smaller than <code>CSS pixels</code>, improving
+rendering performance at the expense of image quality; a value greater than <code>1</code> improves
+image quality at the expense of rendering performance.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>blending_mode</th>
@@ -206,19 +227,12 @@ dot density on light maps.</p></li>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional parameters to pass to the <code>Deck</code>.</p></td>
+      <td><p>Additional parameters that will be forwarded to deck.gl javascript without
+validation nor processing. All dots must be named and will be <code>camelCased</code> when serialised.
+A warning is raised when dots are used, warning class <code>rdeck_dots_nonempty</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>All rdeck props can be updated through the proxy (<code>NULL</code> values will be discarded),
-layers that are added to the proxy (e.g. <code>rdeck_proxy %&gt;% add_h3_hexagon_layer()</code>)
-will be merged with pre-rendered rdeck layers.</p>
-<p>Layers are merged by their <code>id</code>. Matched layers will be updated in place, new layers
-will be appended and hence drawn <em>on top</em> of all existing layers. For layer updates, you
-may omit the <code>data</code> prop to avoid re-serialising unchanged data. All other props will
-assume their defaults if omitted.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
