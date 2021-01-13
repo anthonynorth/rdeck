@@ -46,7 +46,9 @@
 
 
 <meta property="og:title" content="Scale category — scale_category" />
-<meta property="og:description" content="Creates a categorical scale." />
+<meta property="og:description" content="Creates a categorical scale. Categorical scales map input values defined in the set of
+levels to colours (or values). Input values not in the set of levels are assigned
+unmapped_color (or unmapped_value)." />
 
 
 
@@ -78,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -129,7 +131,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Creates a categorical scale.</p>
+    <p>Creates a categorical scale. Categorical scales map input values defined in the set of
+<code>levels</code> to colours (or values). Input values not in the set of <code>levels</code> are assigned
+<code>unmapped_color</code> (or <code>unmapped_value</code>).</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_category</span><span class='op'>(</span>
@@ -169,10 +173,10 @@ rgb<a href='https://rdrr.io/pkg/htmltools/man/builder.html'>a</a> hex strings of
     </tr>
     <tr>
       <th>levels</th>
-      <td><p>&lt;<code>factor</code> | <code>character</code> | <code>logical</code>&gt; The category levels. If NULL, will be
+      <td><p>&lt;<code>factor</code> | <code>character</code> | <code>logical</code>&gt; The category levels. If <code>NULL</code>, will be
 populated from input data. The order of the levels is determined by <code><a href='https://rdrr.io/r/base/levels.html'>levels()</a></code> for factors
 &amp; <code><a href='https://rdrr.io/r/base/unique.html'>unique()</a></code> otherwise. Length of <code>levels</code> must equal <code>palette</code> or <code>range</code>, such that each
-category level is assigned a <code>color</code> or <code>range</code> value.</p></td>
+category level is assigned a colour or range value.</p></td>
     </tr>
     <tr>
       <th>tick_format</th>

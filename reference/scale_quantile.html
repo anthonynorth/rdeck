@@ -46,8 +46,14 @@
 
 
 <meta property="og:title" content="Scale quantile — scale_quantile" />
-<meta property="og:description" content="Creates a quantile scale. Number of quantiles is defined by the length of
-palette or range." />
+<meta property="og:description" content="Creates a quantile scale. The number of quantiles is defined by the length of
+palette or range. For example, a quantile scale with 5 colours will have quantile
+breaks at: c(0.2, 0.4, 0.6, 0.8).
+Quantile scale legend ticks will be quantile values at each quantile break (including
+limits), not the quantile probabilities at each break. You may override this with
+tick_format.
+Example:
+tick_format = function(x) format_number(seq(0, 1, length.out = length(x)))." />
 
 
 
@@ -79,7 +85,7 @@ palette or range." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -130,8 +136,14 @@ palette or range." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a quantile scale. Number of quantiles is defined by the length of
-<code>palette</code> or <code>range</code>.</p>
+    <p>Creates a quantile scale. The number of quantiles is defined by the length of
+<code>palette</code> or <code>range</code>. For example, a quantile scale with 5 colours will have quantile
+breaks at: <code><a href='https://rdrr.io/r/base/c.html'>c(0.2, 0.4, 0.6, 0.8)</a></code>.</p>
+<p>Quantile scale legend ticks will be quantile values at each quantile break (including
+limits), not the quantile probabilities at each break. You may override this with
+<code>tick_format</code>.</p>
+<p>Example:
+<code>tick_format = function(x) format_number(seq(0, 1, length.out = length(x)))</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_quantile</span><span class='op'>(</span>
@@ -185,7 +197,7 @@ length &gt;= 2.</p></td>
 
     <p>As the quantiles are computed from input data, quantile scales are incompatible with
 layers that load data from a url (e.g <code>mvt_layer</code>). If quantiles for remote data are
-known, a quantile scale can be constructed manually with <code><a href='scale_threshold.html'>scale_threshold()</a></code>.</p>
+known, a quantile scale can be constructed manually with <code><a href='scale_threshold.html'>scale_threshold</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other scales: 

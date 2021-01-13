@@ -46,8 +46,10 @@
 
 
 <meta property="og:title" content="Scale log — scale_log" />
-<meta property="og:description" content="Creates a continuous log scale. Similar to a scale_linear() except that an logarithmic
-transform is applied to each input." />
+<meta property="og:description" content="Creates a continuous log scale. Log scales are similar to a scale_linear, except
+that a logarithmic transform is applied to each input prior to calculating the output
+colour or number.
+Log scales can be useful in transforming positively skewed data." />
 
 
 
@@ -79,7 +81,7 @@ transform is applied to each input." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -130,8 +132,10 @@ transform is applied to each input." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a continuous log scale. Similar to a <code><a href='scale_linear.html'>scale_linear()</a></code> except that an logarithmic
-transform is applied to each input.</p>
+    <p>Creates a continuous log scale. Log scales are similar to a <code><a href='scale_linear.html'>scale_linear</a></code>, except
+that a logarithmic transform is applied to each input prior to calculating the output
+colour or number.</p>
+<p>Log scales can be useful in transforming positively skewed data.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_log</span><span class='op'>(</span>
@@ -176,7 +180,7 @@ rgb<a href='https://rdrr.io/pkg/htmltools/man/builder.html'>a</a> hex strings of
     </tr>
     <tr>
       <th>base</th>
-      <td><p>&lt;<code>number</code>&gt; The log base.</p></td>
+      <td><p>&lt;<code>number</code>&gt; The log base. The log base must be a strictly positive value != 1.</p></td>
     </tr>
     <tr>
       <th>limits</th>
@@ -220,7 +224,7 @@ length &gt;= 2.</p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>undefined behaviour if <code>limits</code> crosses 0.</p>
+    <p>Undefined behaviour if <code>limits</code> crosses 0. <code>limits</code> must be strictly positive or negative.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other scales: 

@@ -46,8 +46,14 @@
 
 
 <meta property="og:title" content="Scale power — scale_power" />
-<meta property="og:description" content="Creates a continuous power scale. Similar to a scale_linear() except that an exponential
-transform is applied to each input." />
+<meta property="og:description" content="Creates a continuous power scale. Power scales are similar to a scale_linear, except
+that an exponential transform is applied to each input prior to calculating the output
+colour or number.
+Power scales can be useful in transforming positively skewed data. A square-root or
+cube-root scale can be helpful in dealing with right-skewed data.
+A square-root scale can be defined with scale_power(exponent = 0.5, ...) (the default). A
+square-root scale is a good choice for scaling the radius of point data, as the area of
+each point will be effectively linear in the data." />
 
 
 
@@ -79,7 +85,7 @@ transform is applied to each input." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -130,8 +136,14 @@ transform is applied to each input." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a continuous power scale. Similar to a <code><a href='scale_linear.html'>scale_linear()</a></code> except that an exponential
-transform is applied to each input.</p>
+    <p>Creates a continuous power scale. Power scales are similar to a <code><a href='scale_linear.html'>scale_linear</a></code>, except
+that an exponential transform is applied to each input prior to calculating the output
+colour or number.</p>
+<p>Power scales can be useful in transforming positively skewed data. A square-root or
+cube-root scale can be helpful in dealing with right-skewed data.</p>
+<p>A square-root scale can be defined with <code>scale_power(exponent = 0.5, ...)</code> (the default). A
+square-root scale is a good choice for scaling the radius of point data, as the <code>area</code> of
+each point will be effectively linear in the data.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_power</span><span class='op'>(</span>

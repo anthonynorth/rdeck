@@ -46,8 +46,11 @@
 
 
 <meta property="og:title" content="Scale quantize — scale_quantize" />
-<meta property="og:description" content="Creates a discrete quantize scale. A more restrictive version of scale_threshold() in
-that each break is uniformly spaced between limits." />
+<meta property="og:description" content="Creates a discrete quantize scale. Quantize scales are a special case of scale_threshold
+in that each threshold break is uniformly spaced between limits.
+Similar to scale_threshold, quantize scales slice input data into length(palette)
+(or length(range)) equally spaced bins, with each bin being assigned a colour (or number)
+associated with that bin." />
 
 
 
@@ -79,7 +82,7 @@ that each break is uniformly spaced between limits." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -130,8 +133,11 @@ that each break is uniformly spaced between limits." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a discrete quantize scale. A more restrictive version of <code><a href='scale_threshold.html'>scale_threshold()</a></code> in
-that each <code>break</code> is uniformly spaced between <code>limits</code>.</p>
+    <p>Creates a discrete quantize scale. Quantize scales are a special case of <code><a href='scale_threshold.html'>scale_threshold</a></code>
+in that each threshold break is uniformly spaced between limits.</p>
+<p>Similar to <code><a href='scale_threshold.html'>scale_threshold</a></code>, quantize scales slice input data into <code><a href='https://rdrr.io/r/base/length.html'>length(palette)</a></code>
+(or <code><a href='https://rdrr.io/r/base/length.html'>length(range)</a></code>) equally spaced bins, with each bin being assigned a colour (or number)
+associated with that bin.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_quantize</span><span class='op'>(</span>

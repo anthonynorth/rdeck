@@ -46,8 +46,12 @@
 
 
 <meta property="og:title" content="Scale threshold — scale_threshold" />
-<meta property="og:description" content="Creates a discrete threshold scale. Threshold scale is similar to scale_quantize(), except
-that threshold values can be arbitrary." />
+<meta property="og:description" content="Creates a discrete threshold scale. Threshold scales slice the input data into
+length(palette) (or length(range)) bins, with each bin being assigned a colour
+(or number) associated with that bin.
+Threshold scales are similar scale_quantize, except that threshold break values can be
+any sequence of numbers, provided that they are in increasing order and within the bounds
+of limits." />
 
 
 
@@ -79,7 +83,7 @@ that threshold values can be arbitrary." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9200</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9221</span>
       </span>
     </div>
 
@@ -130,8 +134,12 @@ that threshold values can be arbitrary." />
     </div>
 
     <div class="ref-description">
-    <p>Creates a discrete threshold scale. Threshold scale is similar to <code><a href='scale_quantize.html'>scale_quantize()</a></code>, except
-that threshold values can be arbitrary.</p>
+    <p>Creates a discrete threshold scale. Threshold scales slice the input data into
+<code><a href='https://rdrr.io/r/base/length.html'>length(palette)</a></code> (or <code><a href='https://rdrr.io/r/base/length.html'>length(range)</a></code>) bins, with each bin being assigned a colour
+(or number) associated with that bin.</p>
+<p>Threshold scales are similar <code><a href='scale_quantize.html'>scale_quantize</a></code>, except that threshold break values can be
+any sequence of numbers, provided that they are in increasing order and within the bounds
+of limits.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scale_color_threshold</span><span class='op'>(</span>
@@ -182,7 +190,9 @@ numeric vector of length 2, representing <code><a href='https://rdrr.io/r/base/c
       <th>breaks</th>
       <td><p>&lt;<code>numeric</code>&gt; The threshold breaks of the scale. Must be <code>length(palette) - 1</code>
 or <code>length(range) - 1</code>, such that each <code>break</code> defines boundary between between a
-pair of a <code>palette</code> or <code>range</code> entries.</p></td>
+pair of a <code>palette</code> or <code>range</code> entries.</p>
+<p>Breaks must be in increasing order, within the bounds of <code>limits</code>. Each break will be
+present on the legend for colour scales.</p></td>
     </tr>
     <tr>
       <th>tick_format</th>
