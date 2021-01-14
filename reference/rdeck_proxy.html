@@ -239,7 +239,7 @@ A warning is raised when dots are used, warning class <code>rdeck_dots_nonempty<
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>h3jsr</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>viridis</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/sjmgarnier/viridis'>viridis</a></span><span class='op'>)</span>
 
 <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fillPage.html'>fillPage</a></span><span class='op'>(</span>
   <span class='fu'><a href='rdeck-shiny.html'>rdeckOutput</a></span><span class='op'>(</span><span class='st'>"map"</span>, height <span class='op'>=</span> <span class='st'>"100%"</span><span class='op'>)</span>,
@@ -264,7 +264,7 @@ A warning is raised when dots are used, warning class <code>rdeck_dots_nonempty<
     data <span class='op'>=</span> <span class='va'>h3_data</span>,
     get_fill_color <span class='op'>=</span> <span class='fu'><a href='scale_quantize.html'>scale_color_quantize</a></span><span class='op'>(</span>
       col <span class='op'>=</span> <span class='va'>value</span>,
-      palette <span class='op'>=</span> <span class='fu'>viridis</span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>0.3</span><span class='op'>)</span>
+      palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>0.3</span><span class='op'>)</span>
     <span class='op'>)</span>,
     pickable <span class='op'>=</span> <span class='cn'>TRUE</span>,
     auto_highlight <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -287,7 +287,7 @@ A warning is raised when dots are used, warning class <code>rdeck_dots_nonempty<
         data <span class='op'>=</span> <span class='fu'>filtered_data</span><span class='op'>(</span><span class='op'>)</span>,
         get_fill_color <span class='op'>=</span> <span class='fu'><a href='scale_quantize.html'>scale_color_quantize</a></span><span class='op'>(</span>
           col <span class='op'>=</span> <span class='va'>value</span>,
-          palette <span class='op'>=</span> <span class='fu'>cividis</span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>0.3</span><span class='op'>)</span>
+          palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>cividis</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>0.3</span><span class='op'>)</span>
         <span class='op'>)</span>,
         pickable <span class='op'>=</span> <span class='cn'>TRUE</span>,
         auto_highlight <span class='op'>=</span> <span class='cn'>TRUE</span>,
