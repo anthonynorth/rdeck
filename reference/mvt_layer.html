@@ -211,9 +211,11 @@ not need to be unique, but should be brief. Defaults to the deck.gl class name f
     </tr>
     <tr>
       <th>data</th>
-      <td><p>&lt;<code>data.frame</code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf</a></code> | <code>string</code>&gt; The layer's data. Data frames and
-sf objects will contain all columns that are referenced by the layer's accessors. Strings
-will be interpreted as a URL and data will be retrieved dynamically in the browser.</p></td>
+      <td><p>&lt;<code>character</code>&gt; A character vector of mapbox vector tile url templates.
+Substrings <code>"{x}"</code>, <code>"{y}"</code>, <code>"{z}"</code> will be replaced with a tile's actual index on
+request.</p>
+<p>If multiple url templates are supplied, each endpoint must return the same data for the
+same tile index.</p></td>
     </tr>
     <tr>
       <th>visible</th>
@@ -296,6 +298,20 @@ layer refines visibility of tiles. Defaults to <code>"best-available"</code>.</p
       <td><p>&lt;<code>number</code>&gt; Maximum number of concurrent HTTP
 requests across all specified tile provider domains. If a negative number is
 supplied no throttling occurs (HTTP/2 only).</p></td>
+    </tr>
+    <tr>
+      <th>desaturate</th>
+      <td><p>&lt;<code>number</code>&gt; The desaturation of the bitmap. Between <code>0</code> and <code>1</code>, <code>being</code>
+the original colour, <code>1</code> being greyscale.</p></td>
+    </tr>
+    <tr>
+      <th>transparent_color</th>
+      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour to use for transparent pixels.</p></td>
+    </tr>
+    <tr>
+      <th>tint_color</th>
+      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour to tint the bitmap by. Alpha channel is ignored
+if supplied.</p></td>
     </tr>
     <tr>
       <th>unique_id_property</th>

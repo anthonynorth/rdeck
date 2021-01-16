@@ -196,7 +196,9 @@ not need to be unique, but should be brief. Defaults to the deck.gl class name f
     </tr>
     <tr>
       <th>data</th>
-      <td><p>sf</p></td>
+      <td><p>&lt;<code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf</a></code> | <code>string</code>&gt; The layer's data. Data frames and
+sf objects will contain all columns that are referenced by the layer's accessors. Strings
+will be interpreted as a URL to geojson data that will be retrieved dynamically in the browser.</p></td>
     </tr>
     <tr>
       <th>visible</th>
