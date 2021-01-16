@@ -145,6 +145,21 @@
   color_format <span class='op'>=</span> <span class='st'>"RGBA"</span>,
   auto_highlight <span class='op'>=</span> <span class='cn'>FALSE</span>,
   highlight_color <span class='op'>=</span> <span class='st'>"#00008080"</span>,
+  get_tile_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extent <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tile_size <span class='op'>=</span> <span class='fl'>512</span>,
+  max_zoom <span class='op'>=</span> <span class='cn'>NULL</span>,
+  min_zoom <span class='op'>=</span> <span class='fl'>0</span>,
+  max_cache_size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max_cache_byte_size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  refinement_strategy <span class='op'>=</span> <span class='st'>"best-available"</span>,
+  z_range <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max_requests <span class='op'>=</span> <span class='fl'>6</span>,
+  desaturate <span class='op'>=</span> <span class='fl'>0</span>,
+  transparent_color <span class='op'>=</span> <span class='st'>"#00000000"</span>,
+  tint_color <span class='op'>=</span> <span class='st'>"#ffffff"</span>,
+  unique_id_property <span class='op'>=</span> <span class='st'>""</span>,
+  highlighted_feature_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   stroked <span class='op'>=</span> <span class='cn'>TRUE</span>,
   filled <span class='op'>=</span> <span class='cn'>TRUE</span>,
   extruded <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -166,18 +181,6 @@
   get_line_width <span class='op'>=</span> <span class='fl'>1</span>,
   get_elevation <span class='op'>=</span> <span class='fl'>1000</span>,
   material <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  get_tile_data <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extent <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tile_size <span class='op'>=</span> <span class='fl'>512</span>,
-  max_zoom <span class='op'>=</span> <span class='cn'>NULL</span>,
-  min_zoom <span class='op'>=</span> <span class='fl'>0</span>,
-  max_cache_size <span class='op'>=</span> <span class='cn'>NULL</span>,
-  max_cache_byte_size <span class='op'>=</span> <span class='cn'>NULL</span>,
-  refinement_strategy <span class='op'>=</span> <span class='st'>"best-available"</span>,
-  z_range <span class='op'>=</span> <span class='cn'>NULL</span>,
-  max_requests <span class='op'>=</span> <span class='fl'>6</span>,
-  unique_id_property <span class='op'>=</span> <span class='st'>""</span>,
-  highlighted_feature_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   blending_mode <span class='op'>=</span> <span class='st'>"normal"</span>,
   tooltip <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
@@ -247,6 +250,60 @@ highlighted by <code>highlight_color</code>.</p></td>
 highlighted object. If a single colour value is supplied, that colour will be used to
 highlight all objects in the layer. Per-object highlighting is achieved with a colour scale,
 or a <a href='https://dplyr.tidyverse.org/articles/programming.html'>tidy-eval</a> column of colours.</p></td>
+    </tr>
+    <tr>
+      <th>get_tile_data</th>
+      <td><p>&lt;<code><a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a></code>&gt; retrieves the data of each tile.
+See deck.gl <a href='https://deck.gl/docs/api-reference/geo-layers/tile-layer#gettiledata'>getTileData</a>.</p></td>
+    </tr>
+    <tr>
+      <th>extent</th>
+      <td><p>&lt;<code><a href='https://rdrr.io/r/base/c.html'>c(min_x, min_y, max_x, max_y)</a></code>&gt; Tiles in this bounding box
+will be rendered at <code>min_zoom</code>, when zoomed out below <code>min_zoom</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tile_size</th>
+      <td><p>&lt;<code>number</code>&gt; A power of 2 that is the pixel dimensions of the tile.</p></td>
+    </tr>
+    <tr>
+      <th>max_zoom</th>
+      <td><p>&lt;<code>number</code>&gt; Tiles above this zoom level are not shown. Defaults to <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>min_zoom</th>
+      <td><p>&lt;<code>number</code>&gt; Tiles below this zoom level are not shown. Defaults to <code>0</code>.</p></td>
+    </tr>
+    <tr>
+      <th>max_cache_size</th>
+      <td><p>&lt;<code>number</code>&gt; Maximum number of tiles that can be cached. Defaults to
+5x the number of tiles in current viewport.</p></td>
+    </tr>
+    <tr>
+      <th>max_cache_byte_size</th>
+      <td><p>&lt;<code>number</code>&gt; Maximum memory used for caching tiles.</p></td>
+    </tr>
+    <tr>
+      <th>refinement_strategy</th>
+      <td><p>&lt;<code>"best-available"</code> | <code>"no-overlap"</code> | <code>"never"</code>&gt; How the tile
+layer refines visibility of tiles. Defaults to <code>"best-available"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>z_range</th>
+      <td><p>&lt;<code><a href='https://rdrr.io/r/base/c.html'>c(min, max)</a></code>&gt; Array representing the range of heights in the tile.</p></td>
+    </tr>
+    <tr>
+      <th>max_requests</th>
+      <td><p>&lt;<code>number</code>&gt; Maximum number of concurrent HTTP
+requests across all specified tile provider domains. If a negative number is
+supplied no throttling occurs (HTTP/2 only).</p></td>
+    </tr>
+    <tr>
+      <th>unique_id_property</th>
+      <td><p>string</p></td>
+    </tr>
+    <tr>
+      <th>highlighted_feature_id</th>
+      <td><p>unknown</p></td>
     </tr>
     <tr>
       <th>stroked</th>
@@ -347,60 +404,6 @@ Accepts a single numeric value, a numeric scale, or a
     <tr>
       <th>material</th>
       <td><p>&lt;<code>logical</code>&gt;</p></td>
-    </tr>
-    <tr>
-      <th>get_tile_data</th>
-      <td><p>&lt;<code><a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a></code>&gt; retrieves the data of each tile.
-See deck.gl <a href='https://deck.gl/docs/api-reference/geo-layers/tile-layer#gettiledata'>getTileData</a>.</p></td>
-    </tr>
-    <tr>
-      <th>extent</th>
-      <td><p>&lt;<code><a href='https://rdrr.io/r/base/c.html'>c(min_x, min_y, max_x, max_y)</a></code>&gt; Tiles in this bounding box
-will be rendered at <code>min_zoom</code>, when zoomed out below <code>min_zoom</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tile_size</th>
-      <td><p>&lt;<code>number</code>&gt; A power of 2 that is the pixel dimensions of the tile.</p></td>
-    </tr>
-    <tr>
-      <th>max_zoom</th>
-      <td><p>&lt;<code>number</code>&gt; Tiles above this zoom level are not shown. Defaults to <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>min_zoom</th>
-      <td><p>&lt;<code>number</code>&gt; Tiles below this zoom level are not shown. Defaults to <code>0</code>.</p></td>
-    </tr>
-    <tr>
-      <th>max_cache_size</th>
-      <td><p>&lt;<code>number</code>&gt; Maximum number of tiles that can be cached. Defaults to
-5x the number of tiles in current viewport.</p></td>
-    </tr>
-    <tr>
-      <th>max_cache_byte_size</th>
-      <td><p>&lt;<code>number</code>&gt; Maximum memory used for caching tiles.</p></td>
-    </tr>
-    <tr>
-      <th>refinement_strategy</th>
-      <td><p>&lt;<code>"best-available"</code> | <code>"no-overlap"</code> | <code>"never"</code>&gt; How the tile
-layer refines visibility of tiles. Defaults to <code>"best-available"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>z_range</th>
-      <td><p>&lt;<code><a href='https://rdrr.io/r/base/c.html'>c(min, max)</a></code>&gt; Array representing the range of heights in the tile.</p></td>
-    </tr>
-    <tr>
-      <th>max_requests</th>
-      <td><p>&lt;<code>number</code>&gt; Maximum number of concurrent HTTP
-requests across all specified tile provider domains. If a negative number is
-supplied no throttling occurs (HTTP/2 only).</p></td>
-    </tr>
-    <tr>
-      <th>unique_id_property</th>
-      <td><p>string</p></td>
-    </tr>
-    <tr>
-      <th>highlighted_feature_id</th>
-      <td><p>unknown</p></td>
     </tr>
     <tr>
       <th>blending_mode</th>
