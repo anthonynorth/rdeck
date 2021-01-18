@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9500</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.9510</span>
       </span>
     </div>
 
@@ -155,9 +155,6 @@
   refinement_strategy <span class='op'>=</span> <span class='st'>"best-available"</span>,
   z_range <span class='op'>=</span> <span class='cn'>NULL</span>,
   max_requests <span class='op'>=</span> <span class='fl'>6</span>,
-  desaturate <span class='op'>=</span> <span class='fl'>0</span>,
-  transparent_color <span class='op'>=</span> <span class='st'>"#00000000"</span>,
-  tint_color <span class='op'>=</span> <span class='st'>"#ffffff"</span>,
   unique_id_property <span class='op'>=</span> <span class='st'>""</span>,
   highlighted_feature_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   stroked <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -298,20 +295,6 @@ layer refines visibility of tiles. Defaults to <code>"best-available"</code>.</p
       <td><p>&lt;<code>number</code>&gt; Maximum number of concurrent HTTP
 requests across all specified tile provider domains. If a negative number is
 supplied no throttling occurs (HTTP/2 only).</p></td>
-    </tr>
-    <tr>
-      <th>desaturate</th>
-      <td><p>&lt;<code>number</code>&gt; The desaturation of the bitmap. Between <code>0</code> and <code>1</code>, <code>being</code>
-the original colour, <code>1</code> being greyscale.</p></td>
-    </tr>
-    <tr>
-      <th>transparent_color</th>
-      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour to use for transparent pixels.</p></td>
-    </tr>
-    <tr>
-      <th>tint_color</th>
-      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour to tint the bitmap by. Alpha channel is ignored
-if supplied.</p></td>
     </tr>
     <tr>
       <th>unique_id_property</th>
