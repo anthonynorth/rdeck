@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale linear — scale_linear • rdeck</title>
+<title>Changelog • rdeck</title>
 
 
 <!-- jquery -->
@@ -45,9 +45,7 @@
 
 
 
-<meta property="og:title" content="Scale linear — scale_linear" />
-<meta property="og:description" content="Creates a continuous linear scale. The colour palette (or range) is linearly interpolated
-between limits (or between limits and between breaks for piecewise scales)." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -66,7 +64,7 @@ between limits (or between limits and between breaks for piecewise scales)." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -127,110 +125,49 @@ between limits (or between limits and between breaks for piecewise scales)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scale linear</h1>
-    <small class="dont-index">Source: <a href='https://github.com/anthonynorth/rdeck/blob/master/R/scales.R'><code>R/scales.R</code></a></small>
-    <div class="hidden name"><code>scale_linear.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/anthonynorth/rdeck/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>Creates a continuous linear scale. The colour palette (or range) is linearly interpolated
-between <code>limits</code> (or between <code>limits</code> and between <code>breaks</code> for piecewise scales).</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>scale_color_linear</span><span class='op'>(</span>
-  <span class='va'>col</span>,
-  <span class='va'>palette</span>,
-  na_color <span class='op'>=</span> <span class='st'>"#000000"</span>,
-  limits <span class='op'>=</span> <span class='cn'>NULL</span>,
-  breaks <span class='op'>=</span> <span class='cn'>NULL</span>,
-  n_ticks <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tick_format <span class='op'>=</span> <span class='va'>format_number</span>,
-  legend <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='fu'>scale_linear</span><span class='op'>(</span>
-  <span class='va'>col</span>,
-  range <span class='op'>=</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span>,
-  na_value <span class='op'>=</span> <span class='fl'>0</span>,
-  limits <span class='op'>=</span> <span class='cn'>NULL</span>,
-  breaks <span class='op'>=</span> <span class='cn'>NULL</span>,
-  legend <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>col</th>
-      <td><p>&lt;<code>name</code> | <code>string</code>&gt; The name of the column containing data to be scaled.
-Can be either a named column (non-standard evaluation), or an expression evaluating a string.
-Supports <a href='https://dplyr.tidyverse.org/articles/programming.html'>tidy-eval</a>.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour palette of the colour scale. Must be a vector of
-rgb<a href='https://rdrr.io/pkg/htmltools/man/builder.html'>a</a> hex strings of length &gt;= 2.</p></td>
-    </tr>
-    <tr>
-      <th>na_color</th>
-      <td><p>&lt;<code><a href='color.html'>color</a></code>&gt; The colour value for <code>NA</code> input values.</p></td>
-    </tr>
-    <tr>
-      <th>limits</th>
-      <td><p>&lt;<code><a href='https://rdrr.io/r/base/c.html'>c(min, max)</a></code>&gt; The limits of the scale's input. If not null, must be a
-numeric vector of length 2, representing <code><a href='https://rdrr.io/r/base/c.html'>c(min, max)</a></code>. Values outside the range of
-<code>limits</code> will be clamped to the limits of the scale.</p></td>
-    </tr>
-    <tr>
-      <th>breaks</th>
-      <td><p>&lt;<code>numeric</code>&gt; The breaks of the scale, allowing to define a piecewise scale.
-If not null, must be <code>length(palette) - 2</code> or <code>length(range) - 2</code>, such that each <code>break</code>
-is mapped to a <code>palette</code> or <code>range</code> entry.</p>
-<p>Each break will be present on the legend for colour scales.</p></td>
-    </tr>
-    <tr>
-      <th>n_ticks</th>
-      <td><p>&lt;<code>number</code>&gt; The number of ticks to display on the legend. Includes the domain
-of the scale. If <code>breaks</code> is not <code>NULL</code>, each break must map to a tick and gaps between
-breaks must have the same number of ticks; i.e. <code>n_ticks</code> must be
-<code>2 + length(breaks) + x * (length(breaks) + 1)</code>, where <code>x</code> is any positive integer.</p>
-<p>Defaults to <code>2 + length(breaks)</code> when <code>breaks</code> is not <code>NULL</code>; <code>6</code> otherwise.</p></td>
-    </tr>
-    <tr>
-      <th>tick_format</th>
-      <td><p>&lt;<code>function</code>&gt; A function taking a vector of ticks returning formatted ticks.</p></td>
-    </tr>
-    <tr>
-      <th>legend</th>
-      <td><p>&lt;<code>logical</code>&gt; Indicate whether the legend should be displayed for this scale.</p></td>
-    </tr>
-    <tr>
-      <th>range</th>
-      <td><p>&lt;<code>numeric</code>&gt; The output range of the numeric scale. Must be be a numeric vector of
-length &gt;= 2.</p></td>
-    </tr>
-    <tr>
-      <th>na_value</th>
-      <td><p>&lt;<code>number</code>&gt; The output value for <code>NA</code> input values.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other scales: 
-<code><a href='scale_category.html'>scale_category</a>()</code>,
-<code><a href='scale_log.html'>scale_log</a>()</code>,
-<code><a href='scale_power.html'>scale_power</a>()</code>,
-<code><a href='scale_quantile.html'>scale_quantile</a>()</code>,
-<code><a href='scale_quantize.html'>scale_quantize</a>()</code>,
-<code><a href='scale_threshold.html'>scale_threshold</a>()</code></p></div>
-
+    <div id="rdeck-030" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0">
+<a href="#rdeck-030" class="anchor"></a>rdeck 0.3.0</h1>
+<p>Version 0.3.0 is an almost complete rewrite. Changes of note:</p>
+<ul>
+<li>Add support for layers:
+<ul>
+<li>TileLayer (raster tiles)</li>
+<li>MVTLayer</li>
+<li>BitmapLayer (local images)</li>
+<li>TripsLayer (animation)</li>
+</ul>
+</li>
+<li>Add categorical &amp; threshold scales</li>
+<li>Add tidy-select legend support</li>
+<li>Add extensive layer validation</li>
+<li>Add legend tick customisation</li>
+<li>Add light theme</li>
+<li>Add kepler.gl layer blending modes</li>
+<li>Add support for data loaded in browser, via url</li>
+<li>Add Shiny support</li>
+<li>Replace default layer <code>id</code> parameter with <code><a href="https://rdrr.io/pkg/uuid/man/UUIDgenerate.html">uuid::UUIDgenerate()</a></code>
+</li>
+<li>Add <code>name</code> parameter to layers which is used in tooltips and legends</li>
+<li>Fix / rewrite legend component</li>
+<li>Fix multi-geometry picking / highlighting</li>
+<li>Fix GeoJsonLayer</li>
+<li>Move <code>mapbox_api_access_token</code> parameter to option / environment variable</li>
+<li>Remove unused data on serialisation</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
