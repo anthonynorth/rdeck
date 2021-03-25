@@ -140,10 +140,12 @@
   <span class='va'>...</span>,
   id <span class='op'>=</span> <span class='cn'>NULL</span>,
   name <span class='op'>=</span> <span class='st'>"ArcLayer"</span>,
+  group_name <span class='op'>=</span> <span class='cn'>NULL</span>,
   data <span class='op'>=</span> <span class='cn'>NULL</span>,
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
   pickable <span class='op'>=</span> <span class='cn'>FALSE</span>,
   opacity <span class='op'>=</span> <span class='fl'>1</span>,
+  wrap_longitude <span class='op'>=</span> <span class='cn'>FALSE</span>,
   position_format <span class='op'>=</span> <span class='st'>"XYZ"</span>,
   color_format <span class='op'>=</span> <span class='st'>"RGBA"</span>,
   auto_highlight <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -190,6 +192,11 @@ updatable layers in a shiny application.</p></td>
 not need to be unique, but should be brief. Defaults to the deck.gl class name for the layer.</p></td>
     </tr>
     <tr>
+      <th>group_name</th>
+      <td><p>&lt;<code>string</code>&gt; Defines the group that this layer belongs to. Currently only
+effective on the layer selector, if <code>visibility_toggle = TRUE</code>.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>&lt;<code>data.frame</code> | <code><a href='https://r-spatial.github.io/sf/reference/sf.html'>sf</a></code> | <code>string</code>&gt; The layer's data. Data frames and
 sf objects will contain all columns that are referenced by the layer's accessors. Strings
@@ -197,16 +204,20 @@ will be interpreted as a URL and data will be retrieved dynamically in the brows
     </tr>
     <tr>
       <th>visible</th>
-      <td><p>&lt;<code>logical</code>&gt; Determines whether the layer is visible or not; also determines
+      <td><p>&lt;<code>boolean</code>&gt; Determines whether the layer is visible or not; also determines
 whether any legend elements for the layer will be displayed.</p></td>
     </tr>
     <tr>
       <th>pickable</th>
-      <td><p>&lt;<code>logical</code>&gt; Determines if the layer responds to pointer / touch events.</p></td>
+      <td><p>&lt;<code>boolean</code>&gt; Determines if the layer responds to pointer / touch events.</p></td>
     </tr>
     <tr>
       <th>opacity</th>
       <td><p>&lt;<code>number</code>&gt; Determines the layer's opacity.</p></td>
+    </tr>
+    <tr>
+      <th>wrap_longitude</th>
+      <td><p>&lt;<code>boolean</code>&gt; Normalises geometry longitudes.</p></td>
     </tr>
     <tr>
       <th>position_format</th>
@@ -220,7 +231,7 @@ will be ignored by accessors, making all colours opaque.</p></td>
     </tr>
     <tr>
       <th>auto_highlight</th>
-      <td><p>&lt;<code>logical</code>&gt; When <code>TRUE</code>, the current object <em>hovered</em> by the cursor is
+      <td><p>&lt;<code>boolean</code>&gt; When <code>TRUE</code>, the current object <em>hovered</em> by the cursor is
 highlighted by <code>highlight_color</code>.</p></td>
     </tr>
     <tr>
@@ -281,7 +292,7 @@ Accepts a single numeric value or a
     </tr>
     <tr>
       <th>great_circle</th>
-      <td><p>&lt;<code>logical</code>&gt; If <code>TRUE</code>, create the arc along the shortest path on the
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, create the arc along the shortest path on the
 earth surface.</p></td>
     </tr>
     <tr>

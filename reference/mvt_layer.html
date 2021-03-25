@@ -140,10 +140,12 @@
   <span class='va'>...</span>,
   id <span class='op'>=</span> <span class='cn'>NULL</span>,
   name <span class='op'>=</span> <span class='st'>"MVTLayer"</span>,
+  group_name <span class='op'>=</span> <span class='cn'>NULL</span>,
   data <span class='op'>=</span> <span class='cn'>NULL</span>,
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
   pickable <span class='op'>=</span> <span class='cn'>FALSE</span>,
   opacity <span class='op'>=</span> <span class='fl'>1</span>,
+  wrap_longitude <span class='op'>=</span> <span class='cn'>FALSE</span>,
   position_format <span class='op'>=</span> <span class='st'>"XYZ"</span>,
   color_format <span class='op'>=</span> <span class='st'>"RGBA"</span>,
   auto_highlight <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -160,6 +162,7 @@
   max_requests <span class='op'>=</span> <span class='fl'>6</span>,
   unique_id_property <span class='op'>=</span> <span class='st'>""</span>,
   highlighted_feature_id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  binary <span class='op'>=</span> <span class='cn'>FALSE</span>,
   stroked <span class='op'>=</span> <span class='cn'>TRUE</span>,
   filled <span class='op'>=</span> <span class='cn'>TRUE</span>,
   extruded <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -211,6 +214,11 @@ updatable layers in a shiny application.</p></td>
 not need to be unique, but should be brief. Defaults to the deck.gl class name for the layer.</p></td>
     </tr>
     <tr>
+      <th>group_name</th>
+      <td><p>&lt;<code>string</code>&gt; Defines the group that this layer belongs to. Currently only
+effective on the layer selector, if <code>visibility_toggle = TRUE</code>.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>&lt;<code>character</code>&gt; A character vector of mapbox vector tile url templates.
 Substrings <code>"{x}"</code>, <code>"{y}"</code>, <code>"{z}"</code> will be replaced with a tile's actual index on
@@ -220,16 +228,20 @@ same tile index.</p></td>
     </tr>
     <tr>
       <th>visible</th>
-      <td><p>&lt;<code>logical</code>&gt; Determines whether the layer is visible or not; also determines
+      <td><p>&lt;<code>boolean</code>&gt; Determines whether the layer is visible or not; also determines
 whether any legend elements for the layer will be displayed.</p></td>
     </tr>
     <tr>
       <th>pickable</th>
-      <td><p>&lt;<code>logical</code>&gt; Determines if the layer responds to pointer / touch events.</p></td>
+      <td><p>&lt;<code>boolean</code>&gt; Determines if the layer responds to pointer / touch events.</p></td>
     </tr>
     <tr>
       <th>opacity</th>
       <td><p>&lt;<code>number</code>&gt; Determines the layer's opacity.</p></td>
+    </tr>
+    <tr>
+      <th>wrap_longitude</th>
+      <td><p>&lt;<code>boolean</code>&gt; Normalises geometry longitudes.</p></td>
     </tr>
     <tr>
       <th>position_format</th>
@@ -243,7 +255,7 @@ will be ignored by accessors, making all colours opaque.</p></td>
     </tr>
     <tr>
       <th>auto_highlight</th>
-      <td><p>&lt;<code>logical</code>&gt; When <code>TRUE</code>, the current object <em>hovered</em> by the cursor is
+      <td><p>&lt;<code>boolean</code>&gt; When <code>TRUE</code>, the current object <em>hovered</em> by the cursor is
 highlighted by <code>highlight_color</code>.</p></td>
     </tr>
     <tr>
@@ -302,28 +314,37 @@ supplied no throttling occurs (HTTP/2 only).</p></td>
     </tr>
     <tr>
       <th>unique_id_property</th>
-      <td><p>string</p></td>
+      <td><p>&lt;<code>string</code>&gt; Used for highlighting features across tiles. Features
+on separate tiles are deemed to be <em>the same feature</em> by the supplied property name. If
+no value is supplied, the feature id will be used.</p></td>
     </tr>
     <tr>
       <th>highlighted_feature_id</th>
-      <td><p>unknown</p></td>
+      <td><p>&lt;<code>number</code> | <code>string</code>&gt; When provided, a feature with ID
+corresponding to the supplied value with be highlighted with <code>highlight_color</code>.</p></td>
+    </tr>
+    <tr>
+      <th>binary</th>
+      <td><p>&lt;<code>boolean</code>&gt; Improves rendering performance by removing the tile serialisation
+and deserialisation between worker and main thread.</p>
+<p>Caveat: Polygons and multi-polygons with holes will be rendered as solid polygons.</p></td>
     </tr>
     <tr>
       <th>stroked</th>
-      <td><p>&lt;<code>logical</code>&gt; If <code>TRUE</code>, draw an outline around each object.</p></td>
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, draw an outline around each object.</p></td>
     </tr>
     <tr>
       <th>filled</th>
-      <td><p>&lt;<code>logical</code>&gt; If <code>TRUE</code>, draw the filled area of each point.</p></td>
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, draw the filled area of each point.</p></td>
     </tr>
     <tr>
       <th>extruded</th>
-      <td><p>&lt;<code>logical</code>&gt; If <code>TRUE</code>, extrude objects along the z-axis; if <code>FALSE</code>, all
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, extrude objects along the z-axis; if <code>FALSE</code>, all
 objects will be flat.</p></td>
     </tr>
     <tr>
       <th>wireframe</th>
-      <td><p>&lt;<code>logical</code>&gt; If <code>TRUE</code> and <code>extruded == TRUE</code>, draw a line wireframe of the
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code> and <code>extruded == TRUE</code>, draw a line wireframe of the
 object. The outline will have horizontal lines closing the top and bottom polygons and
 vertical lines for each vertex of the polygon.</p></td>
     </tr>
@@ -345,7 +366,7 @@ vertical lines for each vertex of the polygon.</p></td>
     </tr>
     <tr>
       <th>line_joint_rounded</th>
-      <td><p>&lt;<code>logical</code>&gt;</p></td>
+      <td><p>&lt;<code>boolean</code>&gt;</p></td>
     </tr>
     <tr>
       <th>line_miter_limit</th>
@@ -406,7 +427,7 @@ Accepts a single numeric value, a numeric scale, or a
     </tr>
     <tr>
       <th>material</th>
-      <td><p>&lt;<code>logical</code>&gt;</p></td>
+      <td><p>&lt;<code>boolean</code>&gt;</p></td>
     </tr>
     <tr>
       <th>blending_mode</th>
