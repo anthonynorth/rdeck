@@ -79,7 +79,7 @@ mapbox access token." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdeck</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9300</span>
       </span>
     </div>
 
@@ -146,10 +146,11 @@ mapbox access token." />
   picking_radius <span class='op'>=</span> <span class='fl'>0</span>,
   use_device_pixels <span class='op'>=</span> <span class='cn'>TRUE</span>,
   blending_mode <span class='op'>=</span> <span class='st'>"normal"</span>,
+  layer_selector <span class='op'>=</span> <span class='cn'>FALSE</span>,
   lazy_load <span class='op'>=</span> <span class='cn'>FALSE</span>,
   width <span class='op'>=</span> <span class='cn'>NULL</span>,
   height <span class='op'>=</span> <span class='cn'>NULL</span>,
-  elementId <span class='op'>=</span> <span class='cn'>NULL</span>,
+  id <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -209,6 +210,12 @@ dot density on light maps.</p></li>
 </ul></td>
     </tr>
     <tr>
+      <th>layer_selector</th>
+      <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, the layer selector control will be enabled
+and layers with <code>visibility_toggle = TRUE</code> may be toggled. If <code>FALSE</code>, the layer selector control
+won't be rendered.</p></td>
+    </tr>
+    <tr>
       <th>lazy_load</th>
       <td><p>&lt;<code>boolean</code>&gt; If <code>TRUE</code>, maps will be rendered when they are scrolled into
 view and destroyed when they are scrolled out of view. If <code>FALSE</code>, maps will be rendered
@@ -223,7 +230,7 @@ when the page loads.</p></td>
       <td><p>&lt;<code>number</code>&gt; The height of the map canvas.</p></td>
     </tr>
     <tr>
-      <th>elementId</th>
+      <th>id</th>
       <td><p>&lt;<code>string</code>&gt; The map element id. Not used in shiny applications.</p></td>
     </tr>
     <tr>
